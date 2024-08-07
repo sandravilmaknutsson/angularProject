@@ -8,8 +8,7 @@
     <!-- select a subject to filter from -->
     <label>Ämne:</label>
     <mat-form-field>
-        <mat-label>Välj ett ämne...</mat-label>
-        <mat-select [(ngModel)]="selectedValue" name="course">
+        <mat-select [(ngModel)]="selected" name="course" (selectionChange)="onSelect($event)" placeholder="välj...">
             @for (course of courseList; track course) {
             <mat-option [value]="course.subject"> {{ course.subject }}</mat-option> }
         </mat-select>

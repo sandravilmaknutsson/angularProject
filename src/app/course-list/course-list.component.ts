@@ -21,7 +21,8 @@ export class CourseListComponent {
   displayedColumns: string[] = ["name", "points", "subject"];
   courseList: Course[] = [];
   dataSource = new MatTableDataSource<Course>(this.courseList);
-  selectedValue: string = "";
+  selected: string = "";
+
 
   constructor(private courseService: CourseService, private _liveAnnouncer: LiveAnnouncer) { }
 
@@ -35,6 +36,7 @@ export class CourseListComponent {
     })
   }
 
+
   filter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -46,5 +48,12 @@ export class CourseListComponent {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  onSelect($event: any): void {
+    let filterdData = this.courseList.filter((course: { subject: string; }) => {
+      return course.subject.toLowerCase() === $event.value.toLowerCase();
+    })
+    this.dataSource = new MatTableDataSource(filterdData);
   }
 }
