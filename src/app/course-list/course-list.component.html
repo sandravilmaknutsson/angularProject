@@ -16,6 +16,10 @@
 </div>
 
 <div class="container">
+    <p>Det finns {{ courseAmount }} kurser i tabellen.</p>
+</div>
+
+<div class="container">
     <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortChange($event)">
 
         <ng-container matColumnDef="name">

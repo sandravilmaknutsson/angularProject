@@ -22,6 +22,8 @@ export class CourseListComponent {
   courseList: Course[] = [];
   dataSource = new MatTableDataSource<Course>(this.courseList);
   selected: string = "";
+  courses: Course[] = [];
+  courseAmount: number = 0;
 
 
   constructor(private courseService: CourseService, private _liveAnnouncer: LiveAnnouncer) { }
@@ -33,6 +35,8 @@ export class CourseListComponent {
       this.courseList = data;
       this.dataSource = new MatTableDataSource<Course>(this.courseList)
       this.dataSource.sort = this.sort;
+      this.courses = this.courseList;
+      this.amountControll();
     })
   }
 
@@ -55,5 +59,16 @@ export class CourseListComponent {
       return course.subject.toLowerCase() === $event.value.toLowerCase();
     })
     this.dataSource = new MatTableDataSource(filterdData);
+    this.courses = filterdData;
+    this.amountControll();
+  }
+
+  amountControll() {
+    this.courseAmount = 0;
+    for (let i: number = 0; i < this.courses.length; i++) {
+      if (this.courseList[i] instanceof Object) {
+        this.courseAmount++;
+      }
+    }
   }
 }
