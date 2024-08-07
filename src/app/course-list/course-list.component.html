@@ -1,7 +1,18 @@
 <div class="container">
-    <label>Sök</label>
+    <!-- filter table -->
+    <label>Sök kurser:</label>
     <mat-form-field>
         <input matInput (keyup)="filter($event)" placeholder="ex. webb...">
+    </mat-form-field>
+
+    <!-- select a subject to filter from -->
+    <label>Ämne:</label>
+    <mat-form-field>
+        <mat-label>Välj ett ämne...</mat-label>
+        <mat-select [(ngModel)]="selectedValue" name="course">
+            @for (course of courseList; track course) {
+            <mat-option [value]="course.subject"> {{ course.subject }}</mat-option> }
+        </mat-select>
     </mat-form-field>
 </div>
 

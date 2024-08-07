@@ -7,11 +7,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-course-list',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatInputModule, MatFormFieldModule, MatSortModule],
+  imports: [CommonModule, MatTableModule, MatInputModule, MatFormFieldModule, MatSortModule, MatSelectModule, FormsModule],
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.scss'
 })
@@ -19,6 +21,7 @@ export class CourseListComponent {
   displayedColumns: string[] = ["name", "points", "subject"];
   courseList: Course[] = [];
   dataSource = new MatTableDataSource<Course>(this.courseList);
+  selectedValue: string = "";
 
   constructor(private courseService: CourseService, private _liveAnnouncer: LiveAnnouncer) { }
 

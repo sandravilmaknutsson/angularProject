@@ -2,26 +2,31 @@
     {
         "name": "angular",
         "points": 2,
-        "subject": "webbdev"
+        "subject": "webbdev",
+        "http": "http"
     },
     {
         "name": "database",
         "points": 4,
-        "subject": "backend"
+        "subject": "backend",
+        "http": "http"
     },
     {
         "name": "user interface",
         "points": 3,
-        "subject": "frontend"
+        "subject": "frontend",
+        "http": "http"
     },
     {
         "name": "full stack",
         "points": 7,
-        "subject": "webbdev"
+        "subject": "webbdev",
+        "http": "http"
     },
     {
         "name": "project planning",
         "points": 4,
-        "subject": "webplanning"
+        "subject": "webplanning",
+        "http": "http"
     }
 ]
