@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Course } from '../model/course';
 import { CourseService } from '../services/course.service';
 import { CommonModule } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSortModule } from '@angular/material/sort';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-course-list',
@@ -19,17 +20,28 @@ export class CourseListComponent {
   courseList: Course[] = [];
   dataSource = new MatTableDataSource<Course>(this.courseList);
 
-  constructor(private courseService: CourseService) { }
+  constructor(private courseService: CourseService, private _liveAnnouncer: LiveAnnouncer) { }
+
+  @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit() {
     this.courseService.getCourses().subscribe(data => {
       this.courseList = data;
       this.dataSource = new MatTableDataSource<Course>(this.courseList)
+      this.dataSource.sort = this.sort;
     })
   }
 
   filter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  sortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 }
