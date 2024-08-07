@@ -1,4 +1,11 @@
 <div class="container">
+    <label>Sök</label>
+    <mat-form-field>
+        <input matInput (keyup)="filter($event)" placeholder="ex. webb...">
+    </mat-form-field>
+</div>
+
+<div class="container">
     <table mat-table [dataSource]="dataSource">
 
         <ng-container matColumnDef="name">
@@ -19,5 +26,8 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
+        <tr *matNoDataRow>
+            <td colspan="3"> Din sökning gav inga träffar...</td>
+        </tr>
     </table>
 </div>
