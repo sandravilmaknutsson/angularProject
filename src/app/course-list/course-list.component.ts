@@ -14,13 +14,14 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 export class CourseListComponent {
   displayedColumns: string[] = ["name", "points", "subject"];
   courseList: Course[] = [];
-  // dataSource = new MatTableDataSource(this.courseList);
+  dataSource = new MatTableDataSource<Course>(this.courseList);
 
   constructor(private courseService: CourseService) { }
 
   ngOnInit() {
     this.courseService.getCourses().subscribe(data => {
       this.courseList = data;
+      this.dataSource = new MatTableDataSource<Course>(this.courseList)
     })
   }
 }
