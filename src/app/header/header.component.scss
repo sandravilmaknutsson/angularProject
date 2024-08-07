@@ -11,7 +11,7 @@ $navigation-font-family: sans-serif;
 $navigation-font-weight: 100;
 $navigation-color: $site-header-color;
 $navigation-link-text-decoration: none;
-$navigation-color-hover: #a8a2a2;
+$navigation-color-hover: #fff;
 
 $flex-group-gap: 2rem;
 
@@ -52,4 +52,8 @@ $flex-group-gap: 2rem;
     column-gap: var(--flex-column-gap, $flex-group-gap);
     row-gap: var(--flex-row-gap, calc($flex-group-gap / 2));
     width: fit-content;
+}
+
+.current {
+    text-decoration: underline;
 }

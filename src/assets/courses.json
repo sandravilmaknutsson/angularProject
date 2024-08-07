@@ -1,0 +1,27 @@
+[
+    {
+        "name": "angular",
+        "points": 2,
+        "subject": "webbdev"
+    },
+    {
+        "name": "database",
+        "points": 4,
+        "subject": "backend"
+    },
+    {
+        "name": "user interface",
+        "points": 3,
+        "subject": "frontend"
+    },
+    {
+        "name": "full stack",
+        "points": 7,
+        "subject": "webbdev"
+    },
+    {
+        "name": "project planning",
+        "points": 4,
+        "subject": "webplanning"
+    }
+]
