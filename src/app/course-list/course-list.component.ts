@@ -25,7 +25,6 @@ export class CourseListComponent {
   courses: Course[] = [];
   courseAmount: number = 0;
   courseText: string = "";
-  savedCourseService: any;
 
 
   constructor(private courseService: CourseService, private _liveAnnouncer: LiveAnnouncer) { }

@@ -16,12 +16,18 @@ export class IndividualScheduleComponent {
   getCourse: string = "";
   savedCourse: Course[] = [];
   dataSource = new MatTableDataSource<Course>(this.savedCourse);
+  courseAmount: number = 0;
+  courseText: string = "";
+  points: number = 0;
 
   constructor(private courseService: CourseService) { }
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource<Course>(this.savedCourse);
     this.loadSavedCourses();
+    this.amountControll();
+    this.changeText();
+    this.countPoints();
   }
 
   loadSavedCourses(): Course[] {
@@ -43,5 +49,31 @@ export class IndividualScheduleComponent {
       }
     }
     this.loadSavedCourses();
+    this.countPoints();
+  }
+
+  amountControll(): void {
+    this.courseAmount = 0;
+    for (let i: number = 0; i < this.savedCourse.length; i++) {
+      if (this.savedCourse[i] instanceof Object) {
+        this.courseAmount++;
+      }
+    }
+  }
+  changeText(): void {
+    if (this.courseAmount > 1) {
+      this.courseText = "kurser";
+    } else {
+      this.courseText = "kurs";
+    }
+  }
+
+  countPoints(): void {
+    this.points = 0;
+    for (let i: number = 0; i < this.savedCourse.length
+      ; i++) {
+      let coursePoints = this.savedCourse[i].points;
+      this.points += coursePoints;
+    }
   }
 }
