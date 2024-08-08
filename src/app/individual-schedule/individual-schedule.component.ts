@@ -30,4 +30,18 @@ export class IndividualScheduleComponent {
     this.courseService.savedCourses = this.savedCourse;
     return this.courseService.savedCourses;
   }
+
+  deleteButton(row: Course): void {
+    for (let i: number = 0; i < this.courseService.savedCourses.length; i++) {
+      // loop through till match is found
+      let course = this.courseService.savedCourses[i];
+
+      if (course.name === row.name) {
+        this.courseService.savedCourses.splice(i, 1);
+        localStorage.setItem("savedCourse", JSON.stringify(this.courseService.savedCourses));
+        break;
+      }
+    }
+    this.loadSavedCourses();
+  }
 }
