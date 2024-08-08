@@ -8,6 +8,7 @@ import { Course } from '../model/course';
 })
 export class CourseService {
 
+  savedCourses: Course[] = [];
   private url: string = "assets/courses.json";
 
   constructor(private http: HttpClient) { }

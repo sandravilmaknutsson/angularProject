@@ -25,6 +25,7 @@ export class CourseListComponent {
   courses: Course[] = [];
   courseAmount: number = 0;
   courseText: string = "";
+  savedCourseService: any;
 
 
   constructor(private courseService: CourseService, private _liveAnnouncer: LiveAnnouncer) { }
@@ -86,7 +87,8 @@ export class CourseListComponent {
     }
   }
 
-  addButton(): void {
-
+  addButton(row: Course): void {
+    this.courseService.savedCourses.push(row);
+    localStorage.setItem("savedCourse", JSON.stringify(this.courseService.savedCourses));
   }
 }

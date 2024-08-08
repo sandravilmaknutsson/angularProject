@@ -41,7 +41,7 @@
         <!-- Add to individual schedule -->
         <ng-container matColumnDef="add">
             <th mat-header-cell *matHeaderCellDef>Lägg till</th>
-            <td mat-cell *matCellDef><button>Lägg till</button></td>
+            <td mat-cell *matCellDef="let row"><button (click)="addButton(row)">Lägg till</button></td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
