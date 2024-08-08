@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './individual-schedule.component.scss'
 })
 export class IndividualScheduleComponent {
-  displayedColumns: string[] = ["name", "points", "subject", "delete"];
+  displayedColumns: string[] = ["courseCode", "courseName", "points", "subject", "syllabus", "delete"];
   getCourse: string = "";
   savedCourse: Course[] = [];
   dataSource = new MatTableDataSource<Course>(this.savedCourse);
@@ -42,7 +42,7 @@ export class IndividualScheduleComponent {
       // loop through till match is found
       let course = this.courseService.savedCourses[i];
 
-      if (course.name === row.name) {
+      if (course.courseName === row.courseName) {
         this.courseService.savedCourses.splice(i, 1);
         localStorage.setItem("savedCourse", JSON.stringify(this.courseService.savedCourses));
         break;
@@ -50,6 +50,7 @@ export class IndividualScheduleComponent {
     }
     this.loadSavedCourses();
     this.countPoints();
+    this.amountControll();
   }
 
   amountControll(): void {

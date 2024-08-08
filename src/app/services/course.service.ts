@@ -9,7 +9,8 @@ import { Course } from '../model/course';
 export class CourseService {
 
   savedCourses: Course[] = [];
-  private url: string = "assets/courses.json";
+  private url: string = "https://matdah.github.io/DT208G---Programmering-i-TypeScript/Moment%205%20-%20Projekt/miun_courses.json";
+
 
   constructor(private http: HttpClient) { }
 

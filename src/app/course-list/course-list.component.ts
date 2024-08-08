@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './course-list.component.scss'
 })
 export class CourseListComponent {
-  displayedColumns: string[] = ["name", "points", "subject", "add"];
+  displayedColumns: string[] = ["courseCode", "courseName", "points", "subject", "syllabus", "add"];
   courseList: Course[] = [];
   dataSource = new MatTableDataSource<Course>(this.courseList);
   selected: string = "";

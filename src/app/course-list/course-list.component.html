@@ -24,9 +24,16 @@
 <div class="container">
     <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortChange($event)">
 
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Namn</th>
-            <td mat-cell *matCellDef="let course"> {{ course.name }}</td>
+        <ng-container matColumnDef="courseCode">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by courseCode">Kurskod
+            </th>
+            <td mat-cell *matCellDef="let course"> {{ course.courseCode }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="courseName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by courseName">Kursnamn
+            </th>
+            <td mat-cell *matCellDef="let course"> {{ course.courseName }}</td>
         </ng-container>
 
         <ng-container matColumnDef="points">
@@ -37,6 +44,11 @@
         <ng-container matColumnDef="subject">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by subject">Ämne</th>
             <td mat-cell *matCellDef="let course"> {{ course.subject }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="syllabus">
+            <th mat-header-cell *matHeaderCellDef>Kursplan</th>
+            <td mat-cell *matCellDef="let course"> <a href=`course.points`>Kursplan</a></td>
         </ng-container>
 
         <!-- Add to individual schedule -->
