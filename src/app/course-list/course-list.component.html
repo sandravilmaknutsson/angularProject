@@ -9,6 +9,7 @@
     <label>Ämne:</label>
     <mat-form-field>
         <mat-select [(ngModel)]="selected" name="course" (selectionChange)="onSelect($event)" placeholder="välj...">
+            <mat-option (onSelectionChange)="sortReset()">Alla</mat-option>
             @for (course of courseList; track course) {
             <mat-option [value]="course.subject"> {{ course.subject }}</mat-option> }
         </mat-select>
@@ -16,7 +17,7 @@
 </div>
 
 <div class="container">
-    <p>Det finns {{ courseAmount }} kurser i tabellen.</p>
+    <p>Det finns {{ courseAmount }} {{ courseText }} i tabellen.</p>
 </div>
 
 <div class="container">
@@ -35,6 +36,12 @@
         <ng-container matColumnDef="subject">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by subject">Ämne</th>
             <td mat-cell *matCellDef="let course"> {{ course.subject }}</td>
+        </ng-container>
+
+        <!-- Add to individual schedule -->
+        <ng-container matColumnDef="add">
+            <th mat-header-cell *matHeaderCellDef>Lägg till</th>
+            <td mat-cell *matCellDef><button>Lägg till</button></td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

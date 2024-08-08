@@ -18,12 +18,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './course-list.component.scss'
 })
 export class CourseListComponent {
-  displayedColumns: string[] = ["name", "points", "subject"];
+  displayedColumns: string[] = ["name", "points", "subject", "add"];
   courseList: Course[] = [];
   dataSource = new MatTableDataSource<Course>(this.courseList);
   selected: string = "";
   courses: Course[] = [];
   courseAmount: number = 0;
+  courseText: string = "";
 
 
   constructor(private courseService: CourseService, private _liveAnnouncer: LiveAnnouncer) { }
@@ -37,6 +38,7 @@ export class CourseListComponent {
       this.dataSource.sort = this.sort;
       this.courses = this.courseList;
       this.amountControll();
+      this.changeText();
     })
   }
 
@@ -46,12 +48,16 @@ export class CourseListComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  sortChange(sortState: Sort) {
+  sortChange(sortState: Sort): void {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  sortReset(): void {
+    this.ngOnInit();
   }
 
   onSelect($event: any): void {
@@ -61,14 +67,26 @@ export class CourseListComponent {
     this.dataSource = new MatTableDataSource(filterdData);
     this.courses = filterdData;
     this.amountControll();
+    this.changeText();
   }
 
-  amountControll() {
+  amountControll(): void {
     this.courseAmount = 0;
     for (let i: number = 0; i < this.courses.length; i++) {
       if (this.courseList[i] instanceof Object) {
         this.courseAmount++;
       }
     }
+  }
+  changeText(): void {
+    if (this.courseAmount > 1) {
+      this.courseText = "kurser";
+    } else {
+      this.courseText = "kurs";
+    }
+  }
+
+  addButton(): void {
+
   }
 }
