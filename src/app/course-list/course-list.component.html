@@ -1,67 +1,83 @@
-<h1>Kurser</h1>
 <div class="container">
+    <h1>Kurser</h1>
     <!-- filter table -->
-    <label>Sök kurser:</label>
-    <mat-form-field>
-        <input matInput (keyup)="filter($event)" placeholder="ex. webb...">
-    </mat-form-field>
+    <div class="even-columns">
+        <div class="flex">
+            <label>Sök kurser:</label>
+            <mat-form-field>
+                <input matInput (keyup)="filter($event)" placeholder="ex. webb...">
+            </mat-form-field>
+        </div>
 
-    <!-- select a subject to filter from -->
-    <label>Ämne:</label>
-    <mat-form-field>
-        <mat-select [(ngModel)]="selected" name="course" (selectionChange)="onSelect($event)" placeholder="välj...">
-            <mat-option (onSelectionChange)="sortReset()">Alla</mat-option>
-            @for (course of courseList; track course) {
-            <mat-option [value]="course.subject"> {{ course.subject }}</mat-option> }
-        </mat-select>
-    </mat-form-field>
+        <!-- select a subject to filter from -->
+        <div class="flex">
+            <label>Ämne:</label>
+            <mat-form-field>
+                <mat-select [(ngModel)]="selected" name="course" (selectionChange)="onSelect($event)"
+                    placeholder="välj...">
+                    <mat-option (onSelectionChange)="sortReset()">Alla</mat-option>
+                    @for (course of courseList; track course) {
+                    <mat-option [value]="course.subject"> {{ course.subject }}</mat-option> }
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
 </div>
 
 <div class="container">
     <p>Det finns {{ courseAmount }} {{ courseText }} i tabellen.</p>
+    <p class="info">Skrolla i sidleds för att se hela tabellen.</p>
 </div>
 
 <div class="container">
-    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortChange($event)">
+    <div class="res-table">
 
-        <ng-container matColumnDef="courseCode">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by courseCode">Kurskod
-            </th>
-            <td mat-cell *matCellDef="let course"> {{ course.courseCode }}</td>
-        </ng-container>
+        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortChange($event)">
 
-        <ng-container matColumnDef="courseName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by courseName">Kursnamn
-            </th>
-            <td mat-cell *matCellDef="let course"> {{ course.courseName }}</td>
-        </ng-container>
+            <ng-container matColumnDef="courseCode">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by courseCode">Kurskod
+                </th>
+                <td mat-cell *matCellDef="let course"> {{ course.courseCode }}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="points">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by points">Poäng</th>
-            <td mat-cell *matCellDef="let course"> {{ course.points }}</td>
-        </ng-container>
+            <ng-container matColumnDef="courseName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by courseName">
+                    Kursnamn
+                </th>
+                <td mat-cell *matCellDef="let course"> {{ course.courseName }}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="subject">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by subject">Ämne</th>
-            <td mat-cell *matCellDef="let course"> {{ course.subject }}</td>
-        </ng-container>
+            <ng-container matColumnDef="points">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by points">Poäng</th>
+                <td mat-cell *matCellDef="let course"> {{ course.points }}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="syllabus">
-            <th mat-header-cell *matHeaderCellDef>Kursplan</th>
-            <td mat-cell *matCellDef="let course"> <a href=`course.points`>Kursplan</a></td>
-        </ng-container>
+            <ng-container matColumnDef="subject">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by subject">Ämne</th>
+                <td mat-cell *matCellDef="let course"> {{ course.subject }}</td>
+            </ng-container>
 
-        <!-- Add to individual schedule -->
-        <ng-container matColumnDef="add">
-            <th mat-header-cell *matHeaderCellDef>Lägg till</th>
-            <td mat-cell *matCellDef="let row"><button (click)="addButton(row)">Lägg till</button></td>
-        </ng-container>
+            <ng-container matColumnDef="syllabus">
+                <th mat-header-cell *matHeaderCellDef>Kursplan</th>
+                <td mat-cell *matCellDef="let course"> <a href=`course.points`>Kursplan</a></td>
+            </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            <!-- Add to individual schedule -->
+            <ng-container matColumnDef="add">
+                <th mat-header-cell *matHeaderCellDef>Lägg till</th>
+                <td mat-cell *matCellDef="let row"><button (click)="addButton(row)">Lägg till</button></td>
+            </ng-container>
 
-        <tr *matNoDataRow>
-            <td colspan="3"> Din sökning gav inga träffar...</td>
-        </tr>
-    </table>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+            <tr *matNoDataRow>
+                <td colspan="3">
+                    <div class="container">
+                        Din sökning gav inga träffar...
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>

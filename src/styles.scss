@@ -25,6 +25,10 @@ svg {
     padding: 1rem 2rem;
 }
 
+.res-table {
+    overflow-x: auto;
+}
+
 html,
 body {
     height: 100%;
@@ -33,4 +37,32 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+main {
+    min-height: 80vh;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: gray;
+}
+
+button {
+    min-width: max-content;
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.info {
+    @media screen and (min-width: 45em) {
+        display: none;
+    }
+}
+
+td {
+    color: white;
 }

@@ -1,0 +1,38 @@
+@use "../header/header.component.scss" as *;
+
+.site-footer {
+    color: $site-header-color;
+    background-color: $site-header-background-color;
+    padding: $site-header-padding;
+
+    &__inner {
+        display: flex;
+        gap: $size-1;
+        align-items: $site-header-alignment;
+        justify-content: $site-header-jusitifcation-small-screens;
+    }
+}
+
+.nav {
+    --flex-column-gap: #{$navigation-gap};
+    list-style: none;
+    font-family: $navigation-font-family;
+    font-weight: $navigation-font-weight;
+
+    a {
+        color: $navigation-color;
+        text-decoration: $navigation-link-text-decoration;
+
+        &:is(:hover, :focus) {
+            color: $navigation-color-hover;
+        }
+    }
+}
+
+.flex-group {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--flex-column-gap, $flex-group-gap);
+    row-gap: var(--flex-row-gap, calc($flex-group-gap / 2));
+    width: fit-content;
+}
