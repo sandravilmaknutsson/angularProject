@@ -17,7 +17,8 @@
                     placeholder="välj...">
                     <mat-option (onSelectionChange)="sortReset()">Alla</mat-option>
                     @for (course of courseList; track course) {
-                    <mat-option [value]="course.subject"> {{ course.subject }}</mat-option> }
+                    <mat-option [value]="course.subject"> {{ course.subject
+                        }}</mat-option> }
                 </mat-select>
             </mat-form-field>
         </div>

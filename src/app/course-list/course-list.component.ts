@@ -28,6 +28,7 @@ export class CourseListComponent {
 
 
 
+
   constructor(private courseService: CourseService, private _liveAnnouncer: LiveAnnouncer) { }
 
   @ViewChild(MatSort) sort!: MatSort;
@@ -59,6 +60,7 @@ export class CourseListComponent {
   sortReset(): void {
     this.ngOnInit();
   }
+
 
   onSelect($event: any): void {
     (document.getElementById("input") as HTMLInputElement).value = "";
