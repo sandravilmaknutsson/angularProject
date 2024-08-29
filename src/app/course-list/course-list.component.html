@@ -16,8 +16,8 @@
                 <mat-select [(ngModel)]="selected" name="course" (selectionChange)="onSelect($event)"
                     placeholder="välj...">
                     <mat-option (onSelectionChange)="sortReset()">Alla</mat-option>
-                    @for (course of courseList; track course) {
-                    <mat-option [value]="course.subject"> {{ course.subject
+                    @for (subject of list; track subject) {
+                    <mat-option [value]="subject"> {{ subject
                         }}</mat-option> }
                 </mat-select>
             </mat-form-field>

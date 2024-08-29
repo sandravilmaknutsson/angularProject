@@ -25,8 +25,7 @@ export class CourseListComponent {
   courses: Course[] = [];
   courseAmount: number = 0;
   courseText: string = "";
-
-
+  list: string[] = [];
 
 
   constructor(private courseService: CourseService, private _liveAnnouncer: LiveAnnouncer) { }
@@ -41,6 +40,16 @@ export class CourseListComponent {
       this.courses = this.courseList;
       this.amountControll();
       this.changeText();
+      this.selectData();
+    })
+  }
+  selectData(): void {
+    this.courseList.forEach(course => {
+      if (this.list.includes(course.subject)) {
+        return
+      } else {
+        this.list.push(course.subject);
+      }
     })
   }
 
