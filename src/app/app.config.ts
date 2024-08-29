@@ -7,6 +7,5 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideHttpClient(), provideAnimationsAsync(), HashLocationStrategy]
-
+  providers: [provideRouter(routes), provideHttpClient(), provideAnimationsAsync(), { provide: LocationStrategy, useClass: HashLocationStrategy }]
 };
