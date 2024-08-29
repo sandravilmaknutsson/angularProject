@@ -27,6 +27,7 @@ export class CourseListComponent {
   courseText: string = "";
 
 
+
   constructor(private courseService: CourseService, private _liveAnnouncer: LiveAnnouncer) { }
 
   @ViewChild(MatSort) sort!: MatSort;
@@ -43,7 +44,7 @@ export class CourseListComponent {
   }
 
   filter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
+    let filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
@@ -60,6 +61,7 @@ export class CourseListComponent {
   }
 
   onSelect($event: any): void {
+    (document.getElementById("input") as HTMLInputElement).value = "";
     let filterdData = this.courseList.filter((course: { subject: string; }) => {
       return course.subject.toLowerCase() === $event.value.toLowerCase();
     })
