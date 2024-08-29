@@ -88,7 +88,11 @@ export class CourseListComponent {
   }
 
   addButton(row: Course): void {
-    this.courseService.savedCourses.push(row);
-    localStorage.setItem("savedCourse", JSON.stringify(this.courseService.savedCourses));
+    if (this.courseService.savedCourses.includes(row)) {
+      return
+    } else {
+      this.courseService.savedCourses.push(row);
+      localStorage.setItem("savedCourse", JSON.stringify(this.courseService.savedCourses));
+    }
   }
 }
