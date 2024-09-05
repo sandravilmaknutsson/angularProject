@@ -57,6 +57,10 @@ export class CourseListComponent {
     let filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+  readFilter(): void {
+    let filter = (document.getElementById("input") as HTMLInputElement).value;
+    this.dataSource.filter = filter.trim().toLowerCase();
+  }
 
   sortChange(sortState: Sort): void {
     if (sortState.direction) {
@@ -70,14 +74,13 @@ export class CourseListComponent {
     this.ngOnInit();
   }
 
-
   onSelect($event: any): void {
-    (document.getElementById("input") as HTMLInputElement).value = "";
     let filterdData = this.courseList.filter((course: { subject: string; }) => {
       return course.subject.toLowerCase() === $event.value.toLowerCase();
     })
     this.dataSource = new MatTableDataSource(filterdData);
     this.courses = filterdData;
+    this.readFilter();
     this.amountControll();
     this.changeText();
   }
